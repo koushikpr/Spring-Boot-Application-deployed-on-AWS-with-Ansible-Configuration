@@ -13,4 +13,4 @@ echo pip install boto3
 echo pip install ansible
 echo aws configure 
 echo ansible-playbook  -i inventory autorunning.yaml
-echo "==================================================="
+echo "===================================================="
