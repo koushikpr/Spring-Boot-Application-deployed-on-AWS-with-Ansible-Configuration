@@ -1,4 +1,0 @@
-Containerized Spring Boot Application with Kubernetes Deployment and Ansible Playbook Files for Deploying on AWS EC2 Instance and Google Kubernetes Engine
---
-
-
