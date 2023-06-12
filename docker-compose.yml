@@ -1,0 +1,70 @@
+version: '3.7'
+services:
+ rediscache:
+  image: "redis:${REDIS_VERSION}"
+  container_name: rediscache
+  restart: always
+  hostname : "${REDIS_HOST}"
+  ports:
+   - 6379:6379
+  #command: redis-server /etc/redis/redis.conf
+  #command: ["redis-server", "--bind", "redis", "--port", "6379"]
+  #command: redis-server --save 20 1 --loglevel warning --requirepass development
+  volumes:
+      - cache:/data
+ # networks:
+#      - backend
+#Mongodb service
+ mongo_db: 
+  image: mongo
+  container_name: mongo_db
+  hostname: "${MONGO_HOST}"
+  ports:
+   - 27017:27017
+  restart: always
+  volumes:
+       - mongodata:/data/db
+ # networks:
+ #     - backend
+ ########### use the official image for insight #################
+ insight:
+   image: redislabs/redisinsight:1.10.0
+   ports:
+       -  "8001:8001" 
+ #  networks:
+ #     - backend
+##############################################################################
+
+##Patient Service
+ api:
+  ports:
+    - 8443:8443
+  env_file:
+    - variables.env
+  depends_on:
+    - mongo_db
+    - rediscache
+  build: 
+   context: .././API
+   dockerfile : Dockerfile
+  restart: always
+ # networks:
+ #     - backend
+    
+  #links:
+   #   - rediscache
+   
+#volumes   
+volumes:
+  mongodata :
+  cache:
+    driver : local
+
+#networks:
+#  backend:
+#    external: true
+  
+  
+  
+   
+    
