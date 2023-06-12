@@ -1,19 +1,4 @@
-
-projects: [spring-framework, spring-hateoas, spring-security, spring-security-oauth]
----
-
-= Building REST Services with Spring
-
-* Suitable actions (`GET`, `POST`, `PUT`, `DELETE`, ...)
-* Caching
-* Redirection and forwarding
-* Security (encryption and authentication)
+Containerized Spring Boot Application with Kubernetes Deployment and Ansible Playbook Files for Deploying on AWS EC2 Instance and Google Kubernetes Engine
+--
 
 
-By building on top of HTTP, REST APIs provide the means to build:
-
-* Backwards compatible APIs
-* Evolvable APIs
-* Scaleable services
-* Securable services
-* A spectrum of stateless to stateful services
