@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springapplication-deployment
+  labels:
+    app : springboot
+    type : front-end
+spec :
+  replicas: 2
+  selector:
+    matchLabels:
+      app : springboot
+      type : front-end
+  template:
+   metadata:
+    name: springboot-pod
+    labels:
+     app : springboot
+     type : front-end
+   spec:
+    containers:
+      - name: spring-container
+        image : 030902/springapplication_v1.0
+        imagePullPolicy: IfNotPresent
+    
+
+---
+#spring service node port service 
+
+apiVersion: v1
+kind : Service
+metadata:
+    name: springboot-service
+    labels:
+      app: springboot-service
+spec:
+  template: 
+  selector:
+      app : springboot
+      type : front-end
+  type:  NodePort
+  ports:
+    - protocol: TCP
+      nodePort: 31110
+      port : 8443
+      targetPort : 8443
+      
+
